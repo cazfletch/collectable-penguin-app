@@ -2,7 +2,7 @@
 
 ## Setup
 
-Start up a fabric and deploy the collectable-penguin-network
+Start up a fabric and deploy the collectable-penguin-network (included with the project)
 
 ## Running the app
 
