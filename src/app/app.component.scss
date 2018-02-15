@@ -1,0 +1,42 @@
+@import '../assets/styles/base/_colors.scss';
+@import '../assets/styles/base/_variables.scss';
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $space-medium;
+
+  table {
+    margin-bottom: $space-large;
+  }
+
+  h1 {
+    font-size: 2.25em;
+  }
+
+  h2 {
+    font-size: 1.75em;
+  }
+}
+
+.welcome {
+  display: flex;
+
+  .user-info {
+    align-self: flex-end;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  tr {
+    box-shadow: none;
+  }
+
+  button {
+    align-self: center;
+  }
+}

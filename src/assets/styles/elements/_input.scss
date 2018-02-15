@@ -1,0 +1,34 @@
+// Inputs
+.composer {
+  input[type=text],
+  input[type=username],
+  input[type=password],
+  input[type=email],
+  input[type=url],
+  input[type=search] {
+    @extend %input;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  form input[type=text] {
+    border-bottom: 2px solid transparent;
+    margin-bottom: 0;
+
+    &.ng-dirty.invalid {
+      border-bottom: 2px solid $error-colour-1;
+    }
+
+    &.error-underline{
+      border-bottom:2px solid #ff5c49;
+    }
+  }
+
+  input[type=text] {
+
+    &.error-underline{
+      border-bottom: 2px solid $first-warning;
+      background: $error-colour-2;
+    }
+  }
+}

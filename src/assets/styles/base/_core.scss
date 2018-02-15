@@ -1,0 +1,69 @@
+// Core
+body.composer {
+  margin: 0;
+  font-family: $font-stack;
+  color: $primary-text;
+  background-color: $white;
+
+  .initial-loading-elements {
+    margin-top: 40vh;
+    color: $primary-text;
+    text-align: center;
+  }
+}
+
+.composer * {
+  box-sizing: border-box;
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  main {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    //the height of the page minus the header
+    height: calc(100vh - 63px);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .display-inline {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .align-top {
+    vertical-align: top;
+  }
+
+  .align-middle {
+    vertical-align: middle;
+  }
+
+  .no-animation {
+    transition-duration: 0s;
+  }
+
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+}

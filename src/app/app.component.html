@@ -1,20 +1,95 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<section class="welcome">
   <h1>
-    Welcome to {{ title }}!
+    Welcome to Collectable Penguins!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+  <div *ngIf="currentUser" class="user-info">
+    <img src="assets/images/congas/{{congaName}}.jpeg" height="100px" width="125px">
+    <h2>{{currentUser.split('#')[1]}}</h2>
+  </div>
+</section>
+<section *ngIf="!authenticated">
+  <a href="http://localhost:3000/auth/github">Sign in with github</a>
+</section>
+<section *ngIf="authenticated && !loggedIn">
+  <h2>Sign up</h2>
+  <form (ngSubmit)="onSignUp()" #signupForm="ngForm">
+    <table>
+      <colgroup>
+        <col span="1" style="width: 11%;">
+        <col span="1" style="width: 89%;">
+      </colgroup>
+      <tr>
+        <td>
+          <label>ID</label>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="signUp.id" #id="ngModel" name="id">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>First Name</label>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="signUp.firstName" #firstName="ngModel" name="firstName">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Surname</label>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="signUp.surname" #surname="ngModel" name="surname">
+        </td>
+      </tr>
+    </table>
+    <button type="submit"
+            class="primary">
+      <div *ngIf="!signUpInProgress">
+        <span>Sign up</span>
+      </div>
+      <div *ngIf="signUpInProgress" class="ibm-spinner-indeterminate small loop">
+        <div class="loader">
+          <svg class="circular" viewBox="25 25 50 50">
+            <circle class="circle-path" cx="50" cy="50" r="20"/>
+          </svg>
+        </div>
+      </div>
+    </button>
+  </form>
+</section>
+<section *ngIf="loggedIn">
+  <h2>Available Penguins</h2>
+  <table>
+    <tr *ngFor="let penguin of availablePenguins | async">
+      <td>{{penguin.name}}</td>
+      <td>{{penguin.description}}</td>
+      <td><img src="assets/images/penguins/{{penguin.name}}.JPG" height="50px" width="50px"></td>
+      <td>
+        <button type="button"
+                class="primary" (click)="buyPenguin(penguin.name)">
+          <div *ngIf="!buyInProgress || buyInProgress && penguin.name!==boughtPenguin">
+            <span>Buy</span>
+          </div>
+          <div *ngIf="buyInProgress && penguin.name===boughtPenguin" class="ibm-spinner-indeterminate small loop">
+            <div class="loader">
+              <svg class="circular" viewBox="25 25 50 50">
+                <circle class="circle-path" cx="50" cy="50" r="20"/>
+              </svg>
+            </div>
+          </div>
+        </button>
+      </td>
+    </tr>
+  </table>
 
+  <h2>My Penguins</h2>
+  <table>
+    <tr *ngFor="let penguin of myPenguins | async">
+      <td>{{penguin.name}}</td>
+      <td>{{penguin.description}}</td>
+      <td><img src="assets/images/penguins/{{penguin.name}}.JPG" height="50px" width="50px"></td>
+    </tr>
+  </table>
+</section>
