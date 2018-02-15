@@ -2,17 +2,19 @@
 
 ## Setup
 
-Start up a fabric and deploy the collectable-penguin-network
+1. Start up a fabric and deploy the collectable-penguin-network (included with the project)
+
+2. Run the setup demo transaction 
 
 ## Running the app
 
-Run `npm start` to run the app. This will start the app on http://localhost:4200/
+1. Run `npm start` to run the app. This will start the app on http://localhost:4200/
 
 ## Starting the rest server
 
 The app requires two rest servers to be running. 
 
-Run the following to setup the required environment variable. Replace <CLIENT_ID> and <CLIENT_SECRET> variables
+1. Run the following to setup the required environment variable. Replace <CLIENT_ID> and <CLIENT_SECRET> variables
 
 ```
   export COMPOSER_PROVIDERS='{
@@ -29,6 +31,6 @@ Run the following to setup the required environment variable. Replace <CLIENT_ID
   }'
 ```
 
-Run `composer-rest-server -c admin@collectable-penguin-network -m true` to start the multi-user rest server
+2. Run `composer-rest-server -c admin@collectable-penguin-network -m true` to start the multi-user rest server
 
-Run `composer-rest-server -c admin@collectable-penguin-network -p 3001` to start the rest server that will create identities
+3. Run `composer-rest-server -c admin@collectable-penguin-network -p 3001` to start the rest server that will create identities
